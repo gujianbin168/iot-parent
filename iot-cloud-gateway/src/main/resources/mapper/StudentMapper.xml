@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chint.datapool.cloud.dao.StudentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chint.datapool.cloud.entity.Student">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="school" property="school" />
+        <result column="city" property="city" />
+    </resultMap>
+ 
+    <sql id="base_column_list">
+         id,name, school, city
+    </sql>
+
+    <insert id="insertStudent" parameterType="com.chint.datapool.cloud.entity.Student">
+        insert into tb_student (name, school, city)
+                        values (#{name},#{school},#{city})
+    </insert>
+
+    <!-- 拼接 -->
+    <insert id="saveStudent" parameterType="com.chint.datapool.cloud.entity.Student">
+        insert into tb_student
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="name != null">name,</if>
+            <if test="school != null">school,</if>
+            <if test="city != null">city,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	        <if test="name != null">#{name},</if>
+	        <if test="school != null">#{school},</if>
+	        <if test="city != null">#{city},</if>
+        </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from tb_student where id = #{id}
+    </delete>
+
+    <update id="updateByprimaryKey" parameterType="com.chint.datapool.cloud.entity.Student">
+	    update tb_student
+	    set
+	    name = #{name},
+	    school = #{school},
+	    city = #{city}
+	    WHERE id = #{id}
+    </update>
+
+    <select id="findSomeColumn" resultMap="BaseResultMap">
+        select
+        <include refid="base_column_list" />
+        from tb_student
+    </select>
+
+
+
+
+    <update id="updateByPrimarKeySelective" parameterType="com.chint.datapool.cloud.entity.Student">
+        update tb_student
+        <set>
+            <if test="name ! = null">
+                name = #{student.name}
+            </if>
+            <if test="school ! =null">
+                school = #{student.school}
+            </if>
+            <if test="city ! = null">
+                city = #{student.city}
+            </if>
+        </set>
+    </update>
+ 
+    <select id="findAllStudent" resultMap="BaseResultMap">
+        select * from tb_student
+    </select>
+
+    <select id="findAllStudentPage" resultMap="BaseResultMap" resultType="Student">
+        select * from tb_student
+    </select>
+</mapper>
