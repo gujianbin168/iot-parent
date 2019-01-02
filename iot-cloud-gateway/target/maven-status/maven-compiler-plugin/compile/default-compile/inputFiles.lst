@@ -2,7 +2,6 @@ D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapo
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\response\StudentResponse.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\base\BaseRequest.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\constant\Constants.java
-D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\service\PeopleService.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\util\ArithUtil.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\entity\ImageParam.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\entity\ResultBean.java
@@ -15,7 +14,7 @@ D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapo
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\netty\server\NettyConfig.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\service\impl\RedisServiceImpl.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\service\IRedisService.java
-D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\dao\PeopleDao.java
+D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\controller\CustomerController.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\api\annotation\SensitiveInfo.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\util\StringUtil.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\request\StudentPageRequest.java
@@ -25,9 +24,7 @@ D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapo
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\util\AESForGPSUtil.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\util\Sha1.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\netty\server\BaseServiceImpl.java
-D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\config\CassandraDataSourceConfig.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\org\iot\cloud\gateway\App.java
-D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\service\impl\PeopleServiceImpl.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\base\BaseController.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\exception\NewBaseException.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\intercept\PageInterceptor.java
@@ -36,6 +33,7 @@ D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapo
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\exception\ExceptionEnum.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\exception\BaseException.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\authority\MRoleEntity.java
+D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\model\Customer.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\safe\XssJsonStart.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\config\DataSourceConfig.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\entity\Student.java
@@ -43,13 +41,11 @@ D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapo
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\base\BaseResponse.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\api\annotation\SensitiveInfoSerialize.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\service\impl\StudentServiceImpl.java
-D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\dao\impl\BaseCassandraRepositoryImpl.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\util\DesensitizeUtil.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\DataPoolApplication.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\authority\User.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\config\RedisConfig.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\safe\XssFilter.java
-D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\controller\PeopleController.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\api\annotation\HasRoleAspect.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\response\StudentPageResponse.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\api\annotation\EnableRedis.java
@@ -58,15 +54,14 @@ D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapo
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\netty\server\BaseService.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\netty\server\DiscardServerHandler.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\util\CheckParamUtil.java
-D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\model\People.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\config\MybatisPlusConfig.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\api\annotation\HasStatusAspect.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\entity\Page.java
+D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\dao\CustomerRepository.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\api\annotation\HasRoles.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\api\annotation\SensitiveType.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\api\annotation\SensitiveInfoUtils.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\util\BcryptUtils.java
-D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\cassandra\config\CassandraConfig.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\common\entity\QcloudFile.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\netty\server\DiscardServer.java
 D:\workspace_support\iot-parent\iot-cloud-gateway\src\main\java\com\chint\datapool\cloud\service\StudentService.java

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class DiscardServerHandler extends ChannelHandlerAdapter {
     @Resource
     private BaseService baseService;
-    @Override
+    //@Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
 
         try {
