@@ -5,9 +5,10 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
-		<relativePath/>  
+		<version>2.1.1.RELEASE</version>
+		<relativePath/>
 	</parent>
+	
 	<groupId>com.chint</groupId>
 	<artifactId>iot-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -21,27 +22,52 @@
 		<java.version>1.8</java.version>
 		<aspectj.version>1.9.1</aspectj.version>
 		<joinery.version>1.8</joinery.version>
+		<spring.framework.version>5.1.3.RELEASE</spring.framework.version>
 	</properties>
+	
 
     <repositories>
+        
         <repository>
             <id>snapshots</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
-        <!--<repository>
+        <!--
+        <repository>
             <id>alimaven</id>
             <name>aliyun maven</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>-->
+        </repository>
+		<repository>
+		    <id>spring-milestone</id>
+		    <name>Spring Maven MILESTONE Repository</name>
+		    <url>http://repo.spring.io/libs-milestone</url>
+		</repository>        
+        -->
     </repositories>
 
 	<dependencies>
+
+
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
+			<artifactId>spring-data-cassandra</artifactId>
+			<version>2.1.3.RELEASE</version>
+		</dependency>
+					
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-core</artifactId>
+			<version>3.5.0</version>
 		</dependency>
 		
-<!-- 
+		<dependency>
+		    <groupId>com.datastax.cassandra</groupId>
+		    <artifactId>cassandra-driver-mapping</artifactId>
+		    <version>3.5.0</version>
+		</dependency>		
+        
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -51,32 +77,12 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>		
-
-		<dependency>
-			<groupId>com.datastax.cassandra</groupId>
-			<artifactId>cassandra-driver-core</artifactId>
-			<version>3.5.0</version>
-		</dependency>	 	 	
-		<dependency>
-		    <groupId>com.datastax.cassandra</groupId>
-		    <artifactId>cassandra-driver-mapping</artifactId>
-		    <version>3.5.0</version>
-		</dependency>
-		<dependency>
+ 		<dependency>
 		    <groupId>com.datastax.cassandra</groupId>
 		    <artifactId>cassandra-driver-extras</artifactId>
 		    <version>3.5.0</version>
 	    </dependency> 	
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-cassandra</artifactId>
-		</dependency>
-	 	 <dependency>
-	   	 	<groupId>org.springframework.data</groupId>
-	   	 	<artifactId>spring-data-cassandra</artifactId>
-	   	 	<version>2.1.3.RELEASE</version>
-	 	 </dependency>	    
-			     -->						
+	     -->						
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -116,25 +122,6 @@
 		    <artifactId>velocity-engine-core</artifactId>
 		    <version>2.0</version>
 		</dependency>
-	    
-	    <!-- 引入Druid依赖，阿里巴巴所提供的数据源 -->
-	    <dependency>
-	        <groupId>com.alibaba</groupId>
-	        <artifactId>druid</artifactId>
-	        <version>1.1.6</version>
-	    </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.0</version>
-        </dependency>
- 	 
-	    <!-- 提供mysql驱动 -->
-	    <dependency>
-	        <groupId>mysql</groupId>
-	        <artifactId>mysql-connector-java</artifactId>
-	        <version>6.0.6</version>
-	    </dependency>
 	 
 	    <dependency>
 	        <groupId>org.projectlombok</groupId>
@@ -189,39 +176,14 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.10</version>
 		</dependency>		
-		 <!--
-		<dependency>
-		    <groupId>com.baomidou</groupId>
-		    <artifactId>mybatisplus-spring-boot-starter</artifactId>
-		    <version>1.0.4</version>
-		</dependency>
-		-->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.3.1</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>2.0.7</version>
-        </dependency>
-        
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency> 
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 			<version>1.5.6.RELEASE</version>
 		</dependency>	
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.0.0.RELEASE</version>
-		</dependency>
+
 		<!-- gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -290,7 +252,9 @@
         </profile>
     </profiles>
  -->
+
 	<modules>
 		<module>iot-cloud-gateway</module>
-	</modules>
+		<!-- module>iot-cloud-cassandra</module -->
+	</modules>	
 </project>
