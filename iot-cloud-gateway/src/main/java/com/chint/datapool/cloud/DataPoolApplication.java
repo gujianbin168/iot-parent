@@ -6,14 +6,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import com.chint.datapool.cloud.netty.server.DiscardServer;
+import com.chint.datapool.cloud.netty.server.MessageManagerServer;
 
 @SpringBootApplication
 @ComponentScan
 @MapperScan("com.chint.datapool.cloud.dao")
 public class DataPoolApplication implements CommandLineRunner {
 	@Resource
-	private DiscardServer discardServer;
+	private MessageManagerServer discardServer;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DataPoolApplication.class, args);

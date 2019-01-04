@@ -1,24 +1,23 @@
 package com.chint.datapool.cloud.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.chint.datapool.cloud.common.base.BaseResponse;
-import com.chint.datapool.cloud.common.constant.Constants;
 import com.chint.datapool.cloud.entity.Student;
 import com.chint.datapool.cloud.service.StudentService;
 
+@Api(value="/student", tags="学生接口模块")
 @RestController
 @RequestMapping("/student")
 @Slf4j
@@ -28,6 +27,7 @@ public class StudentController {
 	
 	private static Logger logger = LoggerFactory.getLogger(StudentController.class);
 	
+	@ApiOperation(value="删除用户", notes="删除用户信息")
 	@RequestMapping("/deleteById/{id}")
 	public BaseResponse deleteById(@PathVariable Integer id) {
 		BaseResponse result = new BaseResponse();
