@@ -21,11 +21,11 @@ public class RedisTest {
     @Autowired
     RedisService redisService;
     
-	@RequestMapping("/set/{id}")
-	public BaseResponse set(@PathVariable Integer id) {
+	@RequestMapping("/set/{key}")
+	public BaseResponse set(@PathVariable String key) {
 		BaseResponse result = new BaseResponse();
-		redisService.setValue("firstKey", id);
-		System.out.println("-------"+id);
+		redisService.set("firstKey", key);
+		System.out.println("-------"+key);
 		result.setMsg("添加成功");
 		logger.info("添加成功");
 		return result;
@@ -34,8 +34,8 @@ public class RedisTest {
 	@RequestMapping("/get/{key}")
 	public BaseResponse get(@PathVariable String key) {
 		BaseResponse result = new BaseResponse();
-		Integer i = (Integer)redisService.getValue(key);
-		System.out.println("-------"+i);
+		String str = redisService.get(key);
+		System.out.println("-------"+str);
 		result.setMsg("获取成功");
 		logger.info("获取成功");
 		return result;
@@ -44,9 +44,9 @@ public class RedisTest {
 	@RequestMapping("/del/{key}")
 	public BaseResponse del(@PathVariable String key) {
 		BaseResponse result = new BaseResponse();
-		redisService.remove(key);
-		Integer i = (Integer)redisService.getValue(key);
-		System.out.println("-------"+i);
+		redisService.del(key);
+		String str = redisService.get(key);
+		System.out.println("-------"+str);
 		result.setMsg("删除成功");
 		logger.info("删除成功");
 		return result;

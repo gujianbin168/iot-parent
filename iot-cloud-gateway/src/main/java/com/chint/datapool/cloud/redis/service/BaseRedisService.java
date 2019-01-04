@@ -1,4 +1,4 @@
-package com.chint.datapool.cloud.service;
+package com.chint.datapool.cloud.redis.service;
 import org.springframework.beans.factory.annotation.Autowired;
 /**
  * redis的基类
@@ -7,5 +7,5 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public abstract class BaseRedisService {
     @Autowired
-    protected IRedisService redisService;
+    protected RedisService redisService;
 }

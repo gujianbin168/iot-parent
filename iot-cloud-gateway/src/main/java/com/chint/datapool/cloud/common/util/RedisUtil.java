@@ -2,7 +2,7 @@ package com.chint.datapool.cloud.common.util;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import com.chint.datapool.cloud.service.IRedisService;
+import com.chint.datapool.cloud.redis.service.RedisService;
 
 /**
  * REDIS连接工具类
@@ -11,7 +11,7 @@ import com.chint.datapool.cloud.service.IRedisService;
  */
 public class RedisUtil {
 
-    private static IRedisService redisService;
+    private static RedisService redisService;
 
     /*********************************String start**********************************************/
     /**
@@ -176,7 +176,7 @@ public class RedisUtil {
     }
     /*********************************other end**********************************************/
 
-    public static void setRedisService(IRedisService redisService) {
+    public static void setRedisService(RedisService redisService) {
         RedisUtil.redisService = redisService;
     }
 

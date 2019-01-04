@@ -1,4 +1,4 @@
-package com.chint.datapool.cloud.service.impl;
+package com.chint.datapool.cloud.redis.service.impl;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,10 +20,10 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import com.alibaba.fastjson.JSON;
-import com.chint.datapool.cloud.service.IRedisService;
+import com.chint.datapool.cloud.redis.service.RedisService;
 
 @Service
-public class RedisServiceImpl implements IRedisService{
+public class RedisServiceImpl implements RedisService{
     private static Logger logger = LoggerFactory.getLogger(RedisServiceImpl.class);
 
     private RedisTemplate<String, ?> redisTemplate;

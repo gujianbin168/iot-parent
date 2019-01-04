@@ -2,94 +2,167 @@ package com.chint.datapool.cloud.redis.service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SetOperations;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.data.redis.core.ZSetOperations;
-import org.springframework.stereotype.Component;
-
-@Component
-public class RedisService<HK, V> {
-
-    // 在构造器中获取redisTemplate实例, key(not hashKey) 默认使用String类型
-    private RedisTemplate<String, V> redisTemplate;
-    // 在构造器中通过redisTemplate的工厂方法实例化操作对象
-    private HashOperations<String, HK, V> hashOperations;
-    private ListOperations<String, V> listOperations;
-    private ZSetOperations<String, V> zSetOperations;
-    private SetOperations<String, V> setOperations;
-    private ValueOperations<String, V> valueOperations;
-
-    // IDEA虽然报错,但是依然可以注入成功, 实例化操作对象后就可以直接调用方法操作Redis数据库
-    @Autowired
-    public RedisService(RedisTemplate<String, V> redisTemplate) {
-        this.redisTemplate = redisTemplate;
-        this.hashOperations = redisTemplate.opsForHash();
-        this.listOperations = redisTemplate.opsForList();
-        this.zSetOperations = redisTemplate.opsForZSet();
-        this.setOperations = redisTemplate.opsForSet();
-        this.valueOperations = redisTemplate.opsForValue();
-    }
+import java.util.Set;
 
 
-    public void hashPut(String key, HK hashKey, V value) {
-        hashOperations.put(key, hashKey, value);
-    }
+/**
+ * redis的操作接口
+ * @author gujianbin
+ *
+ */
+public interface RedisService {
 
-    public Map<HK, V> hashFindAll(String key) {
-        return hashOperations.entries(key);
-    }
+    /*********************************String start**********************************************/
+    /*
+     * 将字符串值 value 关联到 key
+     */
+    public boolean set(String key, String value);
 
-    public V hashGet(String key, HK hashKey) {
-        return hashOperations.get(key, hashKey);
-    }
+    /*
+     * 将字符串值 value 关联到 key，并设置过期时间，单位秒
+     */
+    public boolean set(String key, String value, long seconds);
 
-    public void hashRemove(String key, HK hashKey) {
-        hashOperations.delete(key, hashKey);
-    }
+    /*
+     * 将 key 的值设为 value ，当且仅当 key 不存在。
+     * 若给定的 key 已经存在，则 SETNX 不做任何动作。
+     */
+    public Boolean setnx(String key, String value);
 
-    public Long listPush(String key, V value) {
-        return listOperations.rightPush(key, value);
-    }
+    /*
+     * 返回 key 所关联的字符串值。
+     */
+    public String get(String key);
 
-    public Long listUnshift(String key, V value) {
-        return listOperations.leftPush(key, value);
-    }
+    /*
+     * 设置过期时间
+     */
+    public boolean expire(String key, long expire);
 
-    public List<V> listFindAll(String key) {
-        if (!redisTemplate.hasKey(key)) {
-            return null;
-        }
-        return listOperations.range(key, 0, listOperations.size(key));
-    }
+    /*
+     * 将list以json的形式关联到key
+     */
+    public <T> boolean setList(String key, List<T> list);
 
-    public V listLPop(String key) {
-        return listOperations.leftPop(key);
-    }
+    /*
+     * 返回key值所对应的对象的list
+     */
+    public <T> List<T> getList(String key, Class<T> clz);
+    /*********************************String end**********************************************/
 
-    public void setValue(String key, V value) {
-        valueOperations.set(key, value);
-    }
+    /*********************************List start**********************************************/
+    /*
+     * 将一个或多个值 value 插入到列表 key 的表头
+     */
+    public long lpush(String key, Object obj);
 
-    public void setValue(String key, V value, long timeout) {
-        ValueOperations<String, V> vo = redisTemplate.opsForValue();
-        vo.set(key, value, timeout, TimeUnit.MILLISECONDS);
-    }
+    /*
+     * 将一个或多个值 value 插入到列表 key 的表尾
+     */
+    public long rpush(String key, Object obj);
+
+    /*
+     * 移除并返回列表 key 的头元素。
+     */
+    public String lpop(String key);
+    /*********************************List end**********************************************/
+
+    /*********************************Hash start**********************************************/
+    /*
+     * 同时将多个 field-value (域-值)对设置到哈希表 key 中。
+     */
+    public boolean hmset(String key, Map<String, String> hashMap);
+
+    /*
+     * 返回哈希表 key 中，一个或多个给定域的值。
+     */
+    public List<String> hmget(String key);
+
+    /*
+     * 将哈希表 key 中的域 field 的值设为 value 。
+     */
+    public boolean hset(String key, String hashKey, String value);
+
+    /*
+     * 返回哈希表 key 中给定域 field 的值。
+     */
+    public String hget(String key, String hashKey);
+
+    /*
+     * redis 删除hashkey
+     */
+    public Long hdel(String key, String hashKeys);
+
+    /*********************************Hash end**********************************************/
+
+    /*********************************key start**********************************************/
+    /*
+     * 查找所有符合给定模式 pattern 的 key 。
+     * KEYS * 匹配数据库中所有 key 。
+     * KEYS h?llo 匹配 hello ， hallo 和 hxllo 等。
+     * KEYS h*llo 匹配 hllo 和 heeeeello 等。
+     * KEYS h[ae]llo 匹配 hello 和 hallo ，但不匹配 hillo 。
+     * 特殊符号用 \ 隔开
+     */
+    public Set<String> keys(String pattern);
+
+    /*
+     * 删除给定的key 。
+     */
+    public Boolean del(String key);
+
+    /*
+     * 判断是否存在key 。
+     */
+    public Boolean exists(String key);
+
+    /*********************************key end**********************************************/
+    /*********************************sorted set start**********************************************/
+    /*
+     * redis zadd
+     */
+    public Boolean zadd(String key, double score, String value);
+
+    /*
+     * redis zadd
+     */
+    public Boolean zadd(String key, List<String> values);
 
 
-    public V getValue(String key) {
-        return valueOperations.get(key);
-    }
+    public Boolean removeRangeByScore(String key, double start, double end);
 
-    public void remove(String key) {
-        redisTemplate.delete(key);
-    }
+    /*
+     * redis zrange 所有元素
+     */
+    public Set<String> zrangeAll(String key);
 
-    public boolean expire(String key, long timeout, TimeUnit timeUnit) {
-        return redisTemplate.expire(key, timeout, timeUnit);
-    }
+    /*
+     * redis zrange 指定元素
+     */
+    public Set<String> zrange(String key, long start, long end);
+    /*********************************sorted set  end**********************************************/
+
+    /*********************************other start**********************************************/
+    /*
+     * 查找所有符合给定模式 pattern 的 key 。
+     * KEYS * 匹配数据库中所有 key 。
+     * KEYS h?llo 匹配 hello ， hallo 和 hxllo 等。
+     * KEYS h*llo 匹配 hllo 和 heeeeello 等。
+     * KEYS h[ae]llo 匹配 hello 和 hallo ，但不匹配 hillo 。
+     * 特殊符号用 \ 隔开
+     */
+//	public Boolean deleteByPattern(String pattern);
+
+    /**
+     * 功能描述： 减1操作,并设置过期时间，并事务乐观锁
+     *
+     */
+    boolean decrAndExpireByLock(String key, int seconds);
+
+    /**
+     * 功能描述： 减1操作,并在减为0时设置过期时间，并事务乐观锁
+     *
+     */
+    boolean decrAndLastExpireByLock(String key, int seconds);
+    /*********************************other end**********************************************/
 }
