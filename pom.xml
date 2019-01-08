@@ -25,9 +25,7 @@
 		<spring.framework.version>5.1.3.RELEASE</spring.framework.version>
 	</properties>
 	
-
     <repositories>
-        
         <repository>
             <id>snapshots</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
@@ -47,42 +45,6 @@
     </repositories>
 
 	<dependencies>
-
-
-		<!-- 
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-cassandra</artifactId>
-			<version>2.1.3.RELEASE</version>
-		</dependency>
-					
-		<dependency>
-			<groupId>com.datastax.cassandra</groupId>
-			<artifactId>cassandra-driver-core</artifactId>
-			<version>3.5.0</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>com.datastax.cassandra</groupId>
-		    <artifactId>cassandra-driver-mapping</artifactId>
-		    <version>3.5.0</version>
-		</dependency>		
-        
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-	
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>		
- 		<dependency>
-		    <groupId>com.datastax.cassandra</groupId>
-		    <artifactId>cassandra-driver-extras</artifactId>
-		    <version>3.5.0</version>
-	    </dependency> 	
-	     -->						
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -101,7 +63,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	    <dependency>
         	<groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-starter-web</artifactId>
@@ -122,7 +83,6 @@
 		    <artifactId>velocity-engine-core</artifactId>
 		    <version>2.0</version>
 		</dependency>
-	 
 	    <dependency>
 	        <groupId>org.projectlombok</groupId>
 	        <artifactId>lombok</artifactId>
@@ -131,20 +91,13 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.8.0</version>
+            <version>2.2.2</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.8.0</version>
+            <version>2.2.2</version>
         </dependency>
- 	    <!-- 
-		<dependency>
-		    <groupId>io.swagger</groupId>
-		    <artifactId>swagger-annotations</artifactId>
-		    <version>1.5.20</version>
-		</dependency>
-		 -->
 		<!-- http -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -218,37 +171,8 @@
 			</plugin>
 		</plugins>
 	</build>
-	<!-- 
-    <profiles>
-        <profile>
-            <id>local</id>
-            <properties>
-                <profiles.active>local</profiles.active>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>develop</id>
-            <properties>
-                <profiles.active>dev</profiles.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <profiles.active>test</profiles.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <profiles.active>prod</profiles.active>
-            </properties>
-        </profile>
-    </profiles>
- -->
+
+
 
 	<modules>
 		<module>iot-cloud-gateway</module>
