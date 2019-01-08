@@ -3,7 +3,7 @@ package com.chint.datapool.cloud.common.base;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import com.chint.datapool.cloud.common.constant.Constants;
-import com.chint.datapool.cloud.common.exception.ChintAplException;
+import com.chint.datapool.cloud.common.exception.ChintApiException;
 
 public class BaseController {
 
@@ -20,7 +20,7 @@ public class BaseController {
      * @param outPutBean
      * @param e
      */
-    protected void setFailed(BaseResponse outPutBean, ChintAplException e){
+    protected void setFailed(BaseResponse outPutBean, ChintApiException e){
     	outPutBean.setCode(Constants.ResultCode.BUSS_ERR);
     	outPutBean.setMsg(e.getMessage());
     }
@@ -38,7 +38,7 @@ public class BaseController {
                 errorMesssage.append(fieldError.getDefaultMessage() );
                 errorMesssage.append("; ");
             }
-            throw new ChintAplException(Constants.ResultCode.PARAM_ERR,errorMesssage.toString());
+            throw new ChintApiException(Constants.ResultCode.PARAM_ERR,errorMesssage.toString());
         }
     }
 }

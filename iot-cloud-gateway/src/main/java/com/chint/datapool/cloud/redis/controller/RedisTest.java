@@ -1,7 +1,6 @@
 package com.chint.datapool.cloud.redis.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.chint.datapool.cloud.common.base.BaseResponse;
-import com.chint.datapool.cloud.controller.StudentController;
 import com.chint.datapool.cloud.redis.service.RedisService;
 
 @RestController

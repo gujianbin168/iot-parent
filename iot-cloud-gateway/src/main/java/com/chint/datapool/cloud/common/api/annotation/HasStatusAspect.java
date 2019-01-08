@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.chint.datapool.cloud.authority.User;
 import com.chint.datapool.cloud.common.base.BaseRequest;
 import com.chint.datapool.cloud.common.constant.Constants;
-import com.chint.datapool.cloud.common.exception.ChintAplException;
+import com.chint.datapool.cloud.common.exception.ChintApiException;
 
 
 @Aspect
@@ -49,7 +49,7 @@ public class HasStatusAspect {
 //								}
 							}
 	 					}
-						throw new ChintAplException(Constants.ResultCode.BUSS_ERR,operationType.errorshow());
+						throw new ChintApiException(Constants.ResultCode.BUSS_ERR,operationType.errorshow());
 					}
 				} catch (Throwable e) {
 					logger.error(e.getMessage(),e);
