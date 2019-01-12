@@ -23,4 +23,6 @@ public interface UserMapper extends BaseMapper<User>{
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    List<User> findUserByNamePassWord(User user);
 }

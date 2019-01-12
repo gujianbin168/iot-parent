@@ -18,6 +18,13 @@
     from sys_user
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="findUserByNamePassWord" parameterType="com.chint.datapool.cloud.entity.User" resultMap="BaseResultMap">
+  select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where username = #{username,jdbcType=VARCHAR} and
+    	password = #{password,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_user
     where id = #{id,jdbcType=INTEGER}

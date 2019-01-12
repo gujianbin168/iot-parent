@@ -42,4 +42,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		return baseMapper.selectByPrimaryKey(id);
 	}
 
+	@Override
+	public List<User> findUserByNamePassWord(User user) {
+		return baseMapper.findUserByNamePassWord(user);
+	}
+
 }
