@@ -2,22 +2,17 @@ package com.chint.datapool.cloud.filter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.chint.datapool.cloud.common.api.annotation.AuthToken;
-import com.chint.datapool.cloud.common.token.ConstantKit;
+import com.chint.datapool.cloud.common.constant.Constants;
 import com.chint.datapool.cloud.redis.service.RedisService;
 
-import lombok.extern.slf4j.Slf4j;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -87,9 +82,9 @@ public class CheckTokenInterceptor implements HandlerInterceptor {
                 logger.info("token Birth time is: {}", tokeBirthTime);
                 Long diff = System.currentTimeMillis() - tokeBirthTime;
                 logger.info("token is exist : {} ms", diff);
-                if (diff > ConstantKit.TOKEN_RESET_TIME) {
-                	redisService.expire(username, ConstantKit.TOKEN_EXPIRE_TIME);
-                	redisService.expire(token, ConstantKit.TOKEN_EXPIRE_TIME);
+                if (diff > Constants.TOKEN_RESET_TIME) {
+                	redisService.expire(username, Constants.TOKEN_EXPIRE_TIME);
+                	redisService.expire(token, Constants.TOKEN_EXPIRE_TIME);
                     logger.info("Reset expire time success!");
                     Long newBirthTime = System.currentTimeMillis();
                     redisService.set(token + username, newBirthTime.toString());

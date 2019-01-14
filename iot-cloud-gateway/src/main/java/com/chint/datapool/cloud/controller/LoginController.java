@@ -17,7 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.chint.datapool.cloud.common.api.annotation.AuthToken;
 import com.chint.datapool.cloud.common.base.BaseResponse;
-import com.chint.datapool.cloud.common.token.ConstantKit;
+import com.chint.datapool.cloud.common.constant.Constants;
 import com.chint.datapool.cloud.common.token.Md5TokenGenerator;
 import com.chint.datapool.cloud.entity.User;
 import com.chint.datapool.cloud.redis.service.RedisService;
@@ -69,9 +69,9 @@ public class LoginController {
 //            Jedis  jedis = new Jedis("localhost", 6379);
             String token = tokenGenerator.generate(username, password);
             redisService.set(username, token);
-            redisService.expire(username, ConstantKit.TOKEN_EXPIRE_TIME);
+            redisService.expire(username, Constants.TOKEN_EXPIRE_TIME);
             redisService.set(token, username);
-            redisService.expire(token, ConstantKit.TOKEN_EXPIRE_TIME);
+            redisService.expire(token, Constants.TOKEN_EXPIRE_TIME);
             Long currentTime = System.currentTimeMillis();
             redisService.set(token + username, currentTime.toString());
 
