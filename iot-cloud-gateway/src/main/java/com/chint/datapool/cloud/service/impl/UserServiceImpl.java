@@ -24,7 +24,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 	@Override
 	public int insertUser(User user) {
-		return baseMapper.insertUser(user);
+		return baseMapper.insertSelective(user);
 	}
 
 	@Override
@@ -45,6 +45,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	@Override
 	public List<User> findUserByNamePassWord(User user) {
 		return baseMapper.findUserByNamePassWord(user);
+	}
+
+	@Override
+	public User findUserByUserName(String username) {
+		return baseMapper.selectByUserName(username);
 	}
 
 }

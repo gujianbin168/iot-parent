@@ -1,9 +1,8 @@
-/**
- * 
- */
 package com.chint.datapool.cloud.controller;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +49,7 @@ public class LoginController {
     
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @ApiOperation("用户登录接口")
     public BaseResponse login(@RequestBody(required = false) JSONObject userInfo) {
     	logger.info("用户登入开始userInfo:"+userInfo);
@@ -61,12 +60,9 @@ public class LoginController {
         user.setUsername(username);
         user.setPassword(password);
         List<User> users = userService.findUserByNamePassWord(user);
-        User currentUser = users.get(0);
 
         JSONObject jsObj = new JSONObject();
-        if (currentUser != null) {
-
-//            Jedis  jedis = new Jedis("localhost", 6379);
+        if (users != null && users.size()>0 && users.get(0) != null) {
             String token = tokenGenerator.generate(username, password);
             redisService.set(username, token);
             redisService.expire(username, Constants.TOKEN_EXPIRE_TIME);
@@ -75,13 +71,11 @@ public class LoginController {
             Long currentTime = System.currentTimeMillis();
             redisService.set(token + username, currentTime.toString());
 
-            //用完关闭
-//            jedis.close();
-
             jsObj.put("status", "登录成功");
             jsObj.put("token", token);
         } else {
-        	jsObj.put("status", "登录失败");
+        	jsObj.put("status", "登录失败,用户名或密码错误");
+        	result.setCode(Constants.ResultCode.LOGING_QRCODE_ERR);
         }
         result.setData(jsObj);
         logger.info("用户登入结束");

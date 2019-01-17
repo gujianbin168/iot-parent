@@ -26,7 +26,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
 	@Override
 	public int insertRole(Role role) {
-		return baseMapper.insertRole(role);
+		return baseMapper.saveRole(role);
 	}
 
 	@Override

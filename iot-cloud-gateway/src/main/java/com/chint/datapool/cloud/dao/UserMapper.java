@@ -16,7 +16,7 @@ public interface UserMapper extends BaseMapper<User>{
 
     int insertUser(User record);
 
-    int saveUser(User record);
+    int insertSelective(User record);
 
     User selectByPrimaryKey(int id);
 
@@ -25,4 +25,6 @@ public interface UserMapper extends BaseMapper<User>{
     int updateByPrimaryKey(User record);
     
     List<User> findUserByNamePassWord(User user);
+    
+    User selectByUserName(String username);
 }

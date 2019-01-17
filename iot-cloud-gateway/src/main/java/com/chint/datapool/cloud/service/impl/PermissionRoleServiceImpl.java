@@ -24,7 +24,7 @@ public class PermissionRoleServiceImpl extends ServiceImpl<PermissionRoleMapper,
 
 	@Override
 	public int insertPermissionRole(PermissionRole permissionRole) {
-		return baseMapper.insertPermissionRole(permissionRole);
+		return baseMapper.savePermissionRole(permissionRole);
 	}
 
 	@Override

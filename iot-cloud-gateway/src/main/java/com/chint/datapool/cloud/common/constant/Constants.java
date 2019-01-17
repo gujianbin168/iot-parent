@@ -21,12 +21,14 @@ public class Constants {
 	/** 默认件数 */
 	public static final Integer PAGE_SIZE = 30;
 	
+	/**存放鉴权信息的Header名称，默认是Authorization*/
+	public static final String HTTP_HEAD_NAME = "Authorization";
 	 /**设置删除标志为真*/
     public static final Integer DEL_FLAG_TRUE = 1;
     /** 设置删除标志为假*/
     public static final Integer DEL_FLAG_FALSE = 0;
     /**redis存储token设置的过期时间*/
-    public static final Integer TOKEN_EXPIRE_TIME = 60 * 2;
+    public static final Integer TOKEN_EXPIRE_TIME = 60 * 60;
     /**设置可以重置token过期时间的时间界限*/
     public static final Integer TOKEN_RESET_TIME = 1000 * 100;
 
@@ -47,6 +49,8 @@ public class Constants {
 		public static final String SYS_ERR = "205";
 		/** 登录异常（区分二维码引导） */
 		public static final String LOGING_QRCODE_ERR = "206";
+		/**ip地址校验异常*/
+		public static final String IP_QRCODE_ERR = "207";
 		/** 参数异常 */
 		public static final String PARAM_ERR = "209";
 	}

@@ -15,4 +15,5 @@ public interface UserService extends IService<User>{
 	int updateUserById(User user);
 	int deleteUserById(Integer id);
 	List<User> findUserByNamePassWord(User user);
+	User findUserByUserName(String username);
 }

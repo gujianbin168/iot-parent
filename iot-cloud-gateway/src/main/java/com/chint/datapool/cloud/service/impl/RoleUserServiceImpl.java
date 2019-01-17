@@ -24,7 +24,7 @@ public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUser> i
 
 	@Override
 	public int insertRoleUser(RoleUser roleUser) {
-		return baseMapper.insertRoleUser(roleUser);
+		return baseMapper.saveRoleUser(roleUser);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.chint.datapool.cloud.redis.service.RedisService;
+import com.chint.datapool.cloud.service.UserService;
 
 /**
  * 拦截器加载
@@ -17,12 +18,15 @@ public class InterceptorConfigurer implements WebMvcConfigurer {
 	@Autowired
     private RedisService redisService;
 	
+	@Autowired
+	private UserService userService;
+	
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 添加一个拦截器，连接以/admin为前缀的 url路径
         registry.addInterceptor(new CheckRolesInterceptor()).addPathPatterns("/admin/**");
         registry.addInterceptor(new CheckUserInterceptor()).addPathPatterns("/admin/**");
         //Token校验
-        registry.addInterceptor(new CheckTokenInterceptor(redisService)).addPathPatterns("/**");
+        registry.addInterceptor(new CheckTokenInterceptor(redisService,userService)).addPathPatterns("/**");
     }
 }
